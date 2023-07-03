@@ -2,11 +2,9 @@
 
 #include "sm6375.dtsi"
 #include "pmr735a.dtsi"
-#include "pmk8350.dtsi"
 #include "pm6125.dtsi"
 
 /* PM6125 PON is used and we can't have duplicate labels */
-/delete-node/ &pmk8350_pon;
 
 / {
 	model = "Xiaomi Redmi Note 11 Pro 5G";
@@ -18,7 +16,7 @@
 		#size-cells = <2>;
 		ranges;
 
-		bootargs = "clk_ignore_unused pd_ignore_unused";
+		//bootargs = "clk_ignore_unused pd_ignore_unused";
 
 		framebuffer: framebuffer@85200000 {
 			compatible = "simple-framebuffer";
@@ -63,6 +61,18 @@
 		regulator-always-on;
 		regulator-boot-on;
 	};
+};
+
+&qupv3_id_0 {
+	status = "okay";
+};
+
+&qupv3_id_1 {
+	status = "okay";
+};
+
+&tlmm {
+	gpio-reserved-ranges = <13 5>, <45 2>, <48 0>, <56 2>;
 };
 
 &usb_1 {
